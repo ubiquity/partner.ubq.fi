@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { TestimonialCarousel } from "@/components/TestimonialCarousel"
 import Image from "next/image"
 import {
   ArrowRight,
@@ -232,37 +233,71 @@ export default function Home() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="bg-[#00FFFF] h-10 w-10 rounded-full flex items-center justify-center text-[#06061A] font-bold">
-                  A
-                </div>
-                <div className="ml-4">
-                  <h4 className="font-bold">Alex T.</h4>
-                  <p className="text-sm text-gray-600">CTO at BlockChain Protocol</p>
-                </div>
-              </div>
-              <p className="text-gray-700">
-                "We were lucky to get in before they closed enrollment last month. Our development velocity has
-                increased by 40% since implementing Ubiquity's management system."
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="bg-[#00FFFF] h-10 w-10 rounded-full flex items-center justify-center text-[#06061A] font-bold">
-                  S
-                </div>
-                <div className="ml-4">
-                  <h4 className="font-bold">Sarah M.</h4>
-                  <p className="text-sm text-gray-600">Lead Developer at L2 Solutions</p>
-                </div>
-              </div>
-              <p className="text-gray-700">
-                "I was on the waitlist for 2 months before a spot opened up. The wait was absolutely worth it - our team
-                coordination has never been better."
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto">
+            <TestimonialCarousel 
+              testimonials={[
+                {
+                  initial: "A",
+                  name: "Alex T.",
+                  title: "Chief Technology Officer",
+                  quote: "We were lucky to get in before they closed enrollment last month. Our development velocity has increased by 40% since implementing Ubiquity's management system."
+                },
+                {
+                  initial: "S",
+                  name: "Sarah M.",
+                  title: "Lead Developer",
+                  quote: "I was on the waitlist for 2 months before a spot opened up. The wait was absolutely worth it - our team coordination has never been better."
+                },
+                {
+                  initial: "J",
+                  name: "James R.",
+                  title: "Engineering Manager",
+                  quote: "The ROI was immediate. Within just 3 weeks, we eliminated redundant tasks and improved our code quality metrics by 35%. Best investment we've made this year."
+                },
+                {
+                  initial: "M",
+                  name: "Michael K.",
+                  title: "Senior Developer",
+                  quote: "The talent matching feature is incredible. Tasks are now completed 3x faster because they're assigned to developers with the right expertise every time."
+                },
+                {
+                  initial: "E",
+                  name: "Emily W.",
+                  title: "Product Manager",
+                  quote: "Our development team is finally working in sync. Issues that used to fall through the cracks are now addressed promptly. Deployment frequency has doubled!"
+                },
+                {
+                  initial: "D",
+                  name: "David L.",
+                  title: "Technical Director",
+                  quote: "The analytics provided insights we never had before. We discovered hidden talent on our team and optimized our workflow, saving us thousands each month."
+                },
+                {
+                  initial: "R",
+                  name: "Rachel B.",
+                  title: "Development Lead",
+                  quote: "The contribution-based payout system transformed our team culture. Everyone is motivated to deliver quality work, and our velocity has increased dramatically."
+                },
+                {
+                  initial: "T",
+                  name: "Thomas H.",
+                  title: "Software Architect",
+                  quote: "After struggling with repository management for years, Ubiquity solved all our problems in days. Our codebase is now organized, clean, and efficient."
+                },
+                {
+                  initial: "L",
+                  name: "Lisa P.",
+                  title: "DevOps Engineer",
+                  quote: "The automated issue deduplication alone saved us countless hours. Our team now focuses on solving problems instead of managing tickets. Game changer!"
+                },
+                {
+                  initial: "K",
+                  name: "Kevin S.",
+                  title: "Frontend Developer",
+                  quote: "The weekly support calls have been invaluable. Having a dedicated person who understands our specific challenges has accelerated our progress tremendously."
+                }
+              ]}
+            />
           </div>
         </div>
       </section>
