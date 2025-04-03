@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { TestimonialCarousel } from "@/components/TestimonialCarousel"
 import Image from "next/image"
 import {
@@ -100,6 +100,15 @@ export default function Home() {
   const openForm = (): void => {
     setIsFormOpen(true)
   }
+  
+  // Smooth scroll function
+  const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string): void => {
+    e.preventDefault()
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [])
 
   return (
     <div className="flex flex-col min-h-screen font-montserrat">
@@ -111,14 +120,36 @@ export default function Home() {
             <span className="font-bold text-xl text-white">Ubiquity</span>
           </div>
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]">
-              Features
+            <a 
+              href="#features" 
+              className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]"
+              onClick={(e) => scrollToSection(e, 'features')}
+            >
+              Our Services
             </a>
-            <a href="#pricing" className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]">
+            <a 
+              href="#testimonials" 
+              className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]"
+              onClick={(e) => scrollToSection(e, 'testimonials')}
+            >
+              Testimonials
+            </a>
+            <a 
+              href="#pricing" 
+              className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]"
+              onClick={(e) => scrollToSection(e, 'pricing')}
+            >
               Pricing
             </a>
-            <a href="#contact" className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]" onClick={openForm}>
-              Contact
+            <a 
+              href="#contact" 
+              className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]" 
+              onClick={(e) => {
+                scrollToSection(e, 'contact')
+                openForm()
+              }}
+            >
+              Contact Us
             </a>
           </nav>
           <div className="flex items-center gap-4">
@@ -153,8 +184,12 @@ export default function Home() {
                 size="lg"
                 variant="outline"
                 className="border-white text-[#06061A] bg-white hover:bg-white/10 hover:text-white"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
+                }}
               >
-                <a href="#features">Learn More</a>
+                Learn More
               </Button>
             </div>
             <div className="bg-[#00FFFF]/10 p-4 rounded-lg inline-block">
@@ -192,7 +227,7 @@ export default function Home() {
       {/* Features Section */}
       <section id="features" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Comprehensive GitHub Management</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Our Services</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard
@@ -230,9 +265,9 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-gray-50">
+      <section id="testimonials" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Testimonials</h2>
           <div className="max-w-4xl mx-auto">
             <TestimonialCarousel 
               testimonials={[
@@ -305,7 +340,7 @@ export default function Home() {
       {/* Pricing Section */}
       <section id="pricing" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Simple, Transparent Pricing</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Pricing</h2>
 
           <div className="max-w-lg mx-auto">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#00FFFF]">
@@ -362,7 +397,7 @@ export default function Home() {
       <section id="contact" className="py-20 bg-[#06061A] text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to transform your repository management?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Contact Us</h2>
             <p className="text-xl mb-4 text-gray-300">
               Schedule a demo to see how Ubiquity can help manage your GitHub repositories and development team.
             </p>
