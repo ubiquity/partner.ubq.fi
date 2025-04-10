@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
+import { TestimonialCarousel } from "@/components/TestimonialCarousel"
 import Image from "next/image"
 import {
   ArrowRight,
@@ -99,6 +100,15 @@ export default function Home() {
   const openForm = (): void => {
     setIsFormOpen(true)
   }
+  
+  // Smooth scroll function
+  const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string): void => {
+    e.preventDefault()
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [])
 
   return (
     <div className="flex flex-col min-h-screen font-montserrat">
@@ -110,14 +120,36 @@ export default function Home() {
             <span className="font-bold text-xl text-white">Ubiquity</span>
           </div>
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]">
-              Features
+            <a 
+              href="#features" 
+              className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]"
+              onClick={(e) => scrollToSection(e, 'features')}
+            >
+              Our Services
             </a>
-            <a href="#pricing" className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]">
+            <a 
+              href="#testimonials" 
+              className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]"
+              onClick={(e) => scrollToSection(e, 'testimonials')}
+            >
+              Testimonials
+            </a>
+            <a 
+              href="#pricing" 
+              className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]"
+              onClick={(e) => scrollToSection(e, 'pricing')}
+            >
               Pricing
             </a>
-            <a href="#contact" className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]" onClick={openForm}>
-              Contact
+            <a 
+              href="#contact" 
+              className="text-sm font-medium text-gray-300 hover:text-[#00FFFF]" 
+              onClick={(e) => {
+                scrollToSection(e, 'contact')
+                openForm()
+              }}
+            >
+              Contact Us
             </a>
           </nav>
           <div className="flex items-center gap-4">
@@ -152,8 +184,12 @@ export default function Home() {
                 size="lg"
                 variant="outline"
                 className="border-white text-[#06061A] bg-white hover:bg-white/10 hover:text-white"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
+                }}
               >
-                <a href="#features">Learn More</a>
+                Learn More
               </Button>
             </div>
             <div className="bg-[#00FFFF]/10 p-4 rounded-lg inline-block">
@@ -191,7 +227,7 @@ export default function Home() {
       {/* Features Section */}
       <section id="features" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Comprehensive GitHub Management</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Our Services</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard
@@ -229,40 +265,74 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-gray-50">
+      <section id="testimonials" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="bg-[#00FFFF] h-10 w-10 rounded-full flex items-center justify-center text-[#06061A] font-bold">
-                  A
-                </div>
-                <div className="ml-4">
-                  <h4 className="font-bold">Alex T.</h4>
-                  <p className="text-sm text-gray-600">CTO at BlockChain Protocol</p>
-                </div>
-              </div>
-              <p className="text-gray-700">
-                "We were lucky to get in before they closed enrollment last month. Our development velocity has
-                increased by 40% since implementing Ubiquity's management system."
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="bg-[#00FFFF] h-10 w-10 rounded-full flex items-center justify-center text-[#06061A] font-bold">
-                  S
-                </div>
-                <div className="ml-4">
-                  <h4 className="font-bold">Sarah M.</h4>
-                  <p className="text-sm text-gray-600">Lead Developer at L2 Solutions</p>
-                </div>
-              </div>
-              <p className="text-gray-700">
-                "I was on the waitlist for 2 months before a spot opened up. The wait was absolutely worth it - our team
-                coordination has never been better."
-              </p>
-            </div>
+          <h2 className="text-3xl font-bold text-center mb-12">Testimonials</h2>
+          <div className="max-w-4xl mx-auto">
+            <TestimonialCarousel 
+              testimonials={[
+                {
+                  initial: "A",
+                  name: "Alex T.",
+                  title: "Chief Technology Officer",
+                  quote: "We were lucky to get in before they closed enrollment last month. Our development velocity has increased by 40% since implementing Ubiquity's management system."
+                },
+                {
+                  initial: "S",
+                  name: "Sarah M.",
+                  title: "Lead Developer",
+                  quote: "I was on the waitlist for 2 months before a spot opened up. The wait was absolutely worth it - our team coordination has never been better."
+                },
+                {
+                  initial: "J",
+                  name: "James R.",
+                  title: "Engineering Manager",
+                  quote: "The ROI was immediate. Within just 3 weeks, we eliminated redundant tasks and improved our code quality metrics by 35%. Best investment we've made this year."
+                },
+                {
+                  initial: "M",
+                  name: "Michael K.",
+                  title: "Senior Developer",
+                  quote: "The talent matching feature is incredible. Tasks are now completed 3x faster because they're assigned to developers with the right expertise every time."
+                },
+                {
+                  initial: "E",
+                  name: "Emily W.",
+                  title: "Product Manager",
+                  quote: "Our development team is finally working in sync. Issues that used to fall through the cracks are now addressed promptly. Deployment frequency has doubled!"
+                },
+                {
+                  initial: "D",
+                  name: "David L.",
+                  title: "Technical Director",
+                  quote: "The analytics provided insights we never had before. We discovered hidden talent on our team and optimized our workflow, saving us thousands each month."
+                },
+                {
+                  initial: "R",
+                  name: "Rachel B.",
+                  title: "Development Lead",
+                  quote: "The contribution-based payout system transformed our team culture. Everyone is motivated to deliver quality work, and our velocity has increased dramatically."
+                },
+                {
+                  initial: "T",
+                  name: "Thomas H.",
+                  title: "Software Architect",
+                  quote: "After struggling with repository management for years, Ubiquity solved all our problems in days. Our codebase is now organized, clean, and efficient."
+                },
+                {
+                  initial: "L",
+                  name: "Lisa P.",
+                  title: "DevOps Engineer",
+                  quote: "The automated issue deduplication alone saved us countless hours. Our team now focuses on solving problems instead of managing tickets. Game changer!"
+                },
+                {
+                  initial: "K",
+                  name: "Kevin S.",
+                  title: "Frontend Developer",
+                  quote: "The weekly support calls have been invaluable. Having a dedicated person who understands our specific challenges has accelerated our progress tremendously."
+                }
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -270,7 +340,7 @@ export default function Home() {
       {/* Pricing Section */}
       <section id="pricing" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Simple, Transparent Pricing</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Pricing</h2>
 
           <div className="max-w-lg mx-auto">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#00FFFF]">
@@ -327,7 +397,7 @@ export default function Home() {
       <section id="contact" className="py-20 bg-[#06061A] text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to transform your repository management?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Contact Us</h2>
             <p className="text-xl mb-4 text-gray-300">
               Schedule a demo to see how Ubiquity can help manage your GitHub repositories and development team.
             </p>
