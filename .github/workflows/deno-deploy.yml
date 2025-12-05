@@ -67,5 +67,6 @@ jobs:
             --root="." \
             --token="$DENO_DEPLOY_TOKEN" \
             --include="." \
+            --include="out/**" \
             --include="deno.json" \
             "${excludes[@]}"
