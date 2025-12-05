@@ -57,6 +57,9 @@ jobs:
           mapfile -t ignored_paths < <(git ls-files -o --ignored --exclude-standard --directory --no-empty-directory)
           excludes=()
           for path in "${ignored_paths[@]}"; do
+            case "$path" in
+              out|out/*) continue ;;
+            esac
             excludes+=("--exclude=${path}")
           done
 
