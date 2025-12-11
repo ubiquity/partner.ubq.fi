@@ -18,7 +18,6 @@ jobs:
         STATIC_DIR=out
       include: |
         out/**
-      index_html_path: static/index.html
       debug_fetch_fail: true
     secrets:
       DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
