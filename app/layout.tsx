@@ -15,6 +15,12 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Ubiquity - GitHub Repository Management Services",
   description: "Analytics, talent matching, and contribution-based payouts for development teams.",
+  icons: {
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", sizes: "256x256", type: "image/png" },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -32,4 +38,3 @@ export default function RootLayout({
     </html>
   )
 }
-
