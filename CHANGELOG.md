@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/ubiquity/partner.ubq.fi/compare/v1.0.0...v1.1.0) (2026-04-06)
+
+
+### Features
+
+* update deploy workflow to use dynamic debug paths ([fbe23f3](https://github.com/ubiquity/partner.ubq.fi/commit/fbe23f33e90d819e54aabe4415e15468eec198ba))
+
+
+### Bug Fixes
+
+* force-include out dir for deploy ([c528f15](https://github.com/ubiquity/partner.ubq.fi/commit/c528f153eb877c6bc463534f232b55ab8484fac1))
+* keep out/ included despite gitignore ([6250ba7](https://github.com/ubiquity/partner.ubq.fi/commit/6250ba7c4cc814e1dc89d80ede06d3c5c4d0f0b4))
+* update favicon assets for higher fidelity ([fb94fbc](https://github.com/ubiquity/partner.ubq.fi/commit/fb94fbc2a8bff767ee0f2ecb1060c3ec257a3598))
+
 ## 1.0.0 (2025-11-24)
 
 
