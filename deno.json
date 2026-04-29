@@ -5,6 +5,6 @@
   },
   "deploy": {
     "org": "ubiquity-dao",
-    "app": "p-partner-ubq-fi"
+    "app": "p-partner-v2-ubq-fi"
   }
 }

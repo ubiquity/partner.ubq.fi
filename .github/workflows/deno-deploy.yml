@@ -13,6 +13,7 @@ jobs:
     uses: ubiquity/deno-deploy-workflow/.github/workflows/deno-deploy-reusable.yml@codex/deno-2-programmatic
     with:
       project: partner-ubq-fi
+      preview_project: p-partner-v2-ubq-fi
       deploy_platform: deno2
       deno_build_memory_limit: "2048"
       entrypoint: serve.ts
