@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "build": "deno run -A npm:next@14.0.4 build",
+    "build": "deno run --v8-flags=--max-old-space-size=512 -A npm:next@14.0.4 build",
     "serve": "deno run --allow-read --allow-net --allow-env serve.ts"
   },
   "deploy": {
