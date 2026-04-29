@@ -1,5 +1,11 @@
 {
   "tasks": {
+    "build": "deno eval \"\"",
+    "build:ci": "deno run -A npm:next@14.0.4 build",
     "serve": "deno run --allow-read --allow-net --allow-env serve.ts"
+  },
+  "deploy": {
+    "org": "ubiquity-dao",
+    "app": "p-partner-ubq-fi"
   }
 }
