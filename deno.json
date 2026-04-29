@@ -1,7 +1,7 @@
 {
   "tasks": {
     "build": "deno eval \"\"",
-    "build:ci": "deno run -A npm:next@14.0.4 build",
+    "build:ci": "deno run -A npm:next@14.0.4 build && rm -rf deploy-out && cp -R out deploy-out",
     "serve": "deno run --allow-read --allow-net --allow-env serve.ts"
   },
   "deploy": {
