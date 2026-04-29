@@ -15,11 +15,17 @@ jobs:
       project: partner-ubq-fi
       deploy_platform: deno2
       entrypoint: serve.ts
+      root: .deploy-root
       install_command: deno install
-      build_command: deno task build:ci
+      build_command: |
+        deno task build:ci
+        rm -rf .deploy-root
+        mkdir -p .deploy-root
+        cp -R out .deploy-root/out
+        cp serve.ts deno.json .deploy-root/
       runtime_env: |
-        STATIC_DIR=deploy-out
-      index_html_path: deploy-out/index.html
+        STATIC_DIR=out
+      index_html_path: out/index.html
       debug_fetch_fail: true
       required_env: |
         DENO_DEPLOY_TOKEN
